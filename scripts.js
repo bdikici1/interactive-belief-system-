@@ -1,25 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
+console.log("My JS!")document.addEventListener("DOMContentLoaded", function () {
     const contributionForm = document.getElementById("contributionForm");
     const contributionList = document.getElementById("contributionList");
 
-    // Verileri depolamak için geçici bir dizi
-    let insights = [];
+    // Katkıları depolamak için localStorage kullanıyoruz
+    let insights = JSON.parse(localStorage.getItem("insights")) || [];
 
-    // Form gönderildiğinde çalışacak fonksiyon
-    contributionForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Sayfa yenilenmesini önler
-        const insightText = document.getElementById("insight").value;
+    // Form gönderildiğinde yeni katkıyı ekleyin
+    if (contributionForm) {
+        contributionForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Sayfa yenilenmesini önler
+            const insightText = document.getElementById("insight").value;
 
-        // Yeni katkıyı insights dizisine ekleyin
-        insights.push(insightText);
+            // Yeni katkıyı insights listesine ekleyin
+            insights.push(insightText);
+            localStorage.setItem("insights", JSON.stringify(insights));
 
-        // Veriyi güncelleyin ve index.html sayfasına yönlendirin
-        updateInsights();
-        contributionForm.reset();
-        window.location.href = "index.html";
-    });
+            // Formu sıfırlayın ve index.html sayfasına dönün
+            contributionForm.reset();
+            window.location.href = "index.html";
+        });
+    }
 
-    // Katkıları güncelleme fonksiyonu
+    // Katkıları görüntülemek için listeyi güncelleyin
     function updateInsights() {
         contributionList.innerHTML = ""; // Mevcut içeriği temizleyin
         insights.forEach(insight => {
@@ -30,5 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Sayfa yüklendiğinde katkıları gösterin
-    updateInsights();
+    if (contributionList) {
+        updateInsights();
+    }
 });
