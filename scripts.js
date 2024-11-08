@@ -1,4 +1,4 @@
-console.log("My JS!")document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const contributionForm = document.getElementById("contributionForm");
     const contributionList = document.getElementById("contributionList");
 
