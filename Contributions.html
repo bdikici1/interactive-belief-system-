@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>My HTML Page</h1>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Religion - Contributions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Contributions</h1>
+
+    <!-- Yorum Ekleme Formu -->
+    <div id="comment-form">
+        <h3>Add a Comment</h3>
+        <input type="text" id="username" placeholder="Your Name" required>
+        <textarea id="comment-text" placeholder="Write your comment..." required></textarea>
+        <label for="category">Select Category:</label>
+        <select id="category">
+            <option value="creation">Creation</option>
+            <option value="transformation">Transformation</option>
+            <option value="unity">Unity</option>
+        </select>
+        <button onclick="addComment()">Submit</button>
+    </div>
+
+    <!-- Kategori Filtreleme Seçeneği -->
+    <div id="filter-section">
+        <label for="category-filter">Filter by Category:</label>
+        <select id="category-filter" onchange="filterComments()">
+            <option value="all">All</option>
+            <option value="creation">Creation</option>
+            <option value="transformation">Transformation</option>
+            <option value="unity">Unity</option>
+        </select>
+    </div>
+
+    <!-- Yorumlar Bölümü -->
+    <div id="comments-section">
+        <h3>Comments</h3>
+        <!-- Dinamik olarak eklenen yorumlar burada görünecek -->
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
