@@ -57,3 +57,27 @@ console.log("My JS!")document.addEventListener("DOMContentLoaded", function () {
         }
     });
 }
+function addComment() {
+    // Kullanıcıdan bilgileri al
+    const username = document.getElementById("username").value;
+    const commentText = document.getElementById("comment-text").value;
+    const category = document.getElementById("category").value;
+
+    // Bilgilerin boş olmadığından emin ol
+    if (username && commentText) {
+        // Yeni yorum div'i oluştur
+        const commentDiv = document.createElement("div");
+        commentDiv.classList.add("comment", category);
+
+        // Yorum içeriğini ekle
+        commentDiv.innerHTML = `<p><strong>${username}:</strong> "${commentText}"</p>`;
+
+        // Yorumları içeren bölüme ekle
+        document.getElementById("comments-section").appendChild(commentDiv);
+
+        // Formu temizle
+        document.getElementById("username").value = "";
+        document.getElementById("comment-text").value = "";
+        document.getElementById("category").value = "creation";
+    }
+}
