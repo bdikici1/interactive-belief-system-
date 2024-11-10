@@ -36,4 +36,24 @@ console.log("My JS!")document.addEventListener("DOMContentLoaded", function () {
     if (contributionList) {
         updateInsights();
     }
-});
+});function filterComments() {
+    // Kategori seçimini al
+    const category = document.getElementById("category-filter").value;
+    
+    // Tüm yorumları seç
+    const comments = document.querySelectorAll(".comment");
+    
+    // Her yorumu kontrol et ve kategoriye göre görünür/gizli yap
+    comments.forEach(comment => {
+        if (category === "all") {
+            comment.style.display = "block";
+        } else {
+            // Yorumun kategori sınıfını kontrol et
+            if (comment.classList.contains(category)) {
+                comment.style.display = "block";
+            } else {
+                comment.style.display = "none";
+            }
+        }
+    });
+}
