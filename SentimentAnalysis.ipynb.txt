@@ -1,0 +1,133 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP3+NSo5ZhuUTfT0UZexMYI",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/bdikici1/SentimentAnalysis/blob/main/SentimentAnalysis.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3bwMa4qJumzf",
+        "outputId": "06e2a600-08ef-4b01-db85-988943afd394"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: nltk in /usr/local/lib/python3.10/dist-packages (3.8.1)\n",
+            "Requirement already satisfied: click in /usr/local/lib/python3.10/dist-packages (from nltk) (8.1.7)\n",
+            "Requirement already satisfied: joblib in /usr/local/lib/python3.10/dist-packages (from nltk) (1.4.2)\n",
+            "Requirement already satisfied: regex>=2021.8.3 in /usr/local/lib/python3.10/dist-packages (from nltk) (2024.9.11)\n",
+            "Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from nltk) (4.66.6)\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package vader_lexicon to /root/nltk_data...\n",
+            "[nltk_data] Downloading package punkt to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt.zip.\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 1
+        }
+      ],
+      "source": [
+        "# NLTK kütüphanesini kur\n",
+        "!pip install nltk\n",
+        "\n",
+        "# NLTK içindeki gerekli modülleri indir\n",
+        "import nltk\n",
+        "nltk.download('vader_lexicon')  # Duygu analizi için\n",
+        "nltk.download('punkt')          # Metni cümlelere veya kelimelere ayırmak için"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk.sentiment import SentimentIntensityAnalyzer\n",
+        "\n",
+        "# VADER duygu analizleyiciyi başlat\n",
+        "sia = SentimentIntensityAnalyzer()\n",
+        "\n",
+        "# Örnek yorumlar\n",
+        "comments = [\n",
+        "    \"Transformation is a powerful journey of self-discovery.\",\n",
+        "    \"Creation allows us to express our deepest thoughts.\",\n",
+        "    \"Unity brings us together in ways that transcend differences.\"\n",
+        "]\n",
+        "\n",
+        "# Her yorum için duygu skorlarını hesapla\n",
+        "for comment in comments:\n",
+        "    sentiment_score = sia.polarity_scores(comment)\n",
+        "    print(f\"Comment: {comment}\")\n",
+        "    print(f\"Sentiment Score: {sentiment_score}\")\n",
+        "    print(\"\\n\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "AYi2vhEKvsse",
+        "outputId": "18a5ba85-7ba2-48c9-9add-5ef18dc89c8b"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Comment: Transformation is a powerful journey of self-discovery.\n",
+            "Sentiment Score: {'neg': 0.0, 'neu': 0.641, 'pos': 0.359, 'compound': 0.4215}\n",
+            "\n",
+            "\n",
+            "Comment: Creation allows us to express our deepest thoughts.\n",
+            "Sentiment Score: {'neg': 0.0, 'neu': 0.769, 'pos': 0.231, 'compound': 0.2732}\n",
+            "\n",
+            "\n",
+            "Comment: Unity brings us together in ways that transcend differences.\n",
+            "Sentiment Score: {'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}\n",
+            "\n",
+            "\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
