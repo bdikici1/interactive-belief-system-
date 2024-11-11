@@ -1,4 +1,4 @@
-import json
+print ('My Python!'import json
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Initialize sentiment analyzer
